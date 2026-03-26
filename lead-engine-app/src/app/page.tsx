@@ -112,16 +112,17 @@ export default function Home() {
       </section>
       
       {/* Quote Form Section */}
-      <section id="quote" className="py-20 bg-slate-100 relative overflow-hidden">
-         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500 rounded-full blur-3xl opacity-10 translate-x-1/2 -translate-y-1/2"></div>
-         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-10 -translate-x-1/2 translate-y-1/2"></div>
+      <section id="quote" className="py-24 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #0f1e4a 0%, #1a2e6e 100%)'}}>
+         <div className="absolute top-0 right-0 w-96 h-96 orb-amber opacity-20 blur-3xl pointer-events-none"></div>
+         <div className="absolute bottom-0 left-0 w-96 h-96 orb-blue opacity-30 blur-3xl pointer-events-none"></div>
+         <div className="bg-pattern-dots absolute inset-0 pointer-events-none"></div>
          
          <div className="container relative z-10 mx-auto px-4 max-w-4xl pt-8">
             <div className="text-center mb-10">
-              <h2 className={`text-3xl md:text-5xl font-extrabold tracking-tight mb-4 ${config.textColor}`}>Get Your Free Quote</h2>
-              <p className="text-slate-600 text-lg md:text-xl">Fill out the details below and our expert team will get right back to you.</p>
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Get Your Free Quote</h2>
+              <p className="text-blue-200 text-lg md:text-xl">Fill out the details below and our expert team will get right back to you.</p>
             </div>
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-slate-100">
+            <div className="glass-dark p-8 md:p-12 rounded-3xl group transition-all duration-500 hover:shadow-[0_0_50px_rgba(245,158,11,0.1)]">
                <QuoteForm />
             </div>
          </div>
