@@ -12,7 +12,7 @@ export default function GraceChatbot() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const config = getSiteConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
 
