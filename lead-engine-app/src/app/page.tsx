@@ -21,20 +21,48 @@ export default function Home() {
             <p className="text-slate-600 text-lg">We specialize in a wide range of services to improve and expand your home. Every project is completed to the highest standard.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {config.services.slice(0, 3).map((service, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group">
-                <div className={`w-14 h-14 rounded-xl ${config.primaryColor} flex items-center justify-center text-white text-2xl font-bold mb-6 group-hover:-translate-y-2 transition-transform`}>
-                  {index + 1}
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-3">{service}</h3>
-                <p className="text-slate-600 mb-6">Expert {service.toLowerCase()} installed with precision and care to stand the test of time.</p>
-                <a href={`/${service.toLowerCase().replace(' ', '-')}`} className="text-amber-600 font-bold hover:text-amber-700 flex items-center gap-1">
-                  Learn more <span>→</span>
-                </a>
+          {(() => {
+            const serviceData = [
+              {
+                image: 'https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/7b302b74-3ea4-4031-8877-cf8107b9ff5d/unnamed-2.webp',
+                alt: 'Driveway installation by All Aspects Paving',
+                description: 'From block paving to resin-bound surfaces — our driveways are built for beauty, durability, and long-lasting kerb appeal.',
+              },
+              {
+                image: 'https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/a17be0a2-7086-4c54-8aa3-1be7a42b7253/unnamed-3.webp',
+                alt: 'Patio installation by All Aspects Paving',
+                description: 'Transform your outdoor space with a bespoke patio, expertly laid using Indian stone, porcelain, or block paving.',
+              },
+              {
+                image: 'https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/615aab4f-ce9c-4f7e-9e5d-4ee81890ad1e/unnamed-4.webp',
+                alt: 'Block paving installed by All Aspects Paving',
+                description: 'Our signature block paving solutions offer unmatched precision and a premium finish that adds real value to your property.',
+              },
+            ];
+            return (
+              <div className="grid md:grid-cols-3 gap-8">
+                {config.services.slice(0, 3).map((service, index) => (
+                  <div key={index} className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group overflow-hidden">
+                    <div className="relative h-48 overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={serviceData[index].image}
+                        alt={serviceData[index].alt}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-xl font-bold text-slate-800 mb-3">{service}</h3>
+                      <p className="text-slate-600 mb-6">{serviceData[index].description}</p>
+                      <a href={`/${service.toLowerCase().replace(' ', '-')}`} className="text-amber-600 font-bold hover:text-amber-700 flex items-center gap-1">
+                        Learn more <span>→</span>
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            );
+          })()}
         </div>
       </section>
 
@@ -59,17 +87,19 @@ export default function Home() {
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="bg-amber-500 text-slate-900 rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">✓</span>
-                    Expert Tradesmen
+                    20+ Years Experience & Checkatrade 9.6/10 Rating
                   </li>
                 </ul>
                 <a href="#quote" className="btn-accent inline-block">Request a Site Survey</a>
              </div>
-             <div className="md:w-1/2 min-h-64 bg-slate-800 relative w-full h-full p-8 flex items-center justify-center">
-                 <div className="absolute inset-0 opacity-20 bg-pattern-dots-dark"></div>
-                 <div className="text-center relative z-10 glass-panel p-8 rounded-xl shadow-2xl">
-                    <div className="text-6xl mb-4">🏠</div>
-                    <div className="text-2xl font-bold text-slate-800">Transforming Homes</div>
-                 </div>
+             <div className="md:w-1/2 min-h-64 relative w-full overflow-hidden" style={{minHeight: '300px'}}>
+               {/* eslint-disable-next-line @next/next/no-img-element */}
+               <img
+                 src="https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/6571003b-70e6-4e48-a766-5b31e8cd53bd/unnamed-1.webp"
+                 alt="All Aspects Paving completed project in Surrey"
+                 className="absolute inset-0 w-full h-full object-cover"
+               />
+               <div className="absolute inset-0 bg-slate-900/40"></div>
              </div>
            </div>
         </div>
