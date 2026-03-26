@@ -30,28 +30,51 @@ export default function GraceChatbot() {
     setIsTyping(true);
     
     try {
-      // Map messages to the format expected by the server action
       const chatMessages = newMsgs.map(m => ({
         role: (m.role === 'agent' ? 'assistant' : 'user') as 'user' | 'assistant',
         content: m.text
       }));
 
-      // Call the Server Action
       const siteContext = config.domain.includes('paving') ? 'paving' : 'building';
       const response = await chat(chatMessages, siteContext);
       
       if (response && response.text) {
         setMessages(prev => [...prev, { role: 'agent', text: response.text }]);
+        speak(response.text);
       }
     } catch (error) {
       console.error('Chat error:', error);
-      setMessages(prev => [...prev, { 
-        role: 'agent', 
-        text: "I'm having a spot of trouble connecting. Please bear with me, or use the quote form if you're in a hurry!" 
-      }]);
+      const errorMsg = "I'm having a spot of trouble connecting. Please bear with me, or use the quote form if you're in a hurry!";
+      setMessages(prev => [...prev, { role: 'agent', text: errorMsg }]);
+      speak(errorMsg);
     } finally {
       setIsTyping(false);
     }
+  };
+
+  const speak = (text: string) => {
+    if (!window.speechSynthesis) return;
+    
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Find Google UK English Female voice
+    const voices = window.speechSynthesis.getVoices();
+    const targetVoice = voices.find(v => v.name === 'Google UK English Female') || 
+                        voices.find(v => v.lang === 'en-GB' && v.name.includes('Female')) ||
+                        voices.find(v => v.lang === 'en-GB');
+    
+    if (targetVoice) {
+      utterance.voice = targetVoice;
+    }
+    
+    utterance.pitch = 1.15;
+    utterance.rate = 1.12;
+    utterance.lang = 'en-GB';
+    
+    window.speechSynthesis.speak(utterance);
   };
 
   return (
