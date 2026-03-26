@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
 interface HeroProps {
@@ -51,11 +52,12 @@ export default function Hero({
            <div className="aspect-square relative flex items-center justify-center">
              <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-blue-500/20 rounded-full blur-3xl mix-blend-screen animate-pulse-slow"></div>
              <div className="relative glass-panel w-5/6 h-5/6 rounded-2xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden">
-               {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img
+               <Image
                  src="https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/6571003b-70e6-4e48-a766-5b31e8cd53bd/unnamed-1.webp"
                  alt="Premium driveway installed by All Aspects Paving in Surrey"
-                 className="absolute inset-0 w-full h-full object-cover"
+                 fill
+                 priority
+                 className="object-cover"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
                <div className="absolute bottom-4 left-4 right-4 z-10 p-4 bg-slate-900/50 backdrop-blur border border-white/10 rounded-lg">

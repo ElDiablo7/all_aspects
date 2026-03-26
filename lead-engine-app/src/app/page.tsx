@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { getSiteConfig } from '@/lib/site-config';
 import Hero from '@/components/ui/Hero';
 import QuoteForm from '@/components/forms/QuoteForm';
@@ -49,11 +50,11 @@ export default function Home() {
                 {config.services.slice(0, 3).map((service, index) => (
                   <div key={index} className="glass-card rounded-2xl group overflow-hidden">
                     <div className="relative h-48 overflow-hidden">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={serviceData[index].image}
                         alt={serviceData[index].alt}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent"></div>
                     </div>
@@ -98,15 +99,15 @@ export default function Home() {
                 </ul>
                 <a href="#quote" className="btn-accent inline-block">Request a Site Survey</a>
              </div>
-             <div className="md:w-1/2 min-h-64 relative w-full overflow-hidden" style={{minHeight: '300px'}}>
-               {/* eslint-disable-next-line @next/next/no-img-element */}
-               <img
-                 src="https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/6571003b-70e6-4e48-a766-5b31e8cd53bd/unnamed-1.webp"
-                 alt="All Aspects Paving completed project in Surrey"
-                 className="absolute inset-0 w-full h-full object-cover"
-               />
-               <div className="absolute inset-0 bg-slate-900/40"></div>
-             </div>
+              <div className="md:w-1/2 min-h-64 relative w-full overflow-hidden" style={{minHeight: '300px'}}>
+                <Image
+                  src="https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/6571003b-70e6-4e48-a766-5b31e8cd53bd/unnamed-1.webp"
+                  alt="All Aspects Paving completed project in Surrey"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-slate-900/40"></div>
+              </div>
            </div>
         </div>
       </section>
