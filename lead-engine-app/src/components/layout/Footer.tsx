@@ -61,8 +61,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-white/5 mt-16 pt-8 text-center text-[10px] uppercase tracking-[0.3em] text-blue-200/20">
+      <div className="border-t border-white/5 mt-16 pt-8 text-center text-[10px] uppercase tracking-[0.3em] text-blue-200/20 pb-4">
         <p>&copy; {new Date().getFullYear()} {config.name}. Professional Paving Excellence.</p>
+        <p className="mt-2 text-amber-500/40 tracking-[0.1em] transition-all hover:text-amber-500 hover:scale-105 inline-block cursor-default font-bold">Powered by GRACE-X AI &copy; Zac Crockett 2025</p>
       </div>
     </footer>
   );
