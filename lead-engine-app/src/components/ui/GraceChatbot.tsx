@@ -102,26 +102,42 @@ export default function GraceChatbot() {
   const speak = (text: string) => {
     if (!window.speechSynthesis) return;
     
-    // Cancel any ongoing speech
-    window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(text);
-    
-    // Find Google UK English Female voice
-    const voices = window.speechSynthesis.getVoices();
-    const targetVoice = voices.find(v => v.name === 'Google UK English Female') || 
-                        voices.find(v => v.lang === 'en-GB' && v.name.includes('Female')) ||
-                        voices.find(v => v.lang === 'en-GB');
-    
-    if (targetVoice) {
-      utterance.voice = targetVoice;
+    const attemptSpeech = () => {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      
+      // Extensive search for Google UK Female
+      const targetVoice = 
+        voices.find(v => v.name === 'Google UK English Female') || 
+        voices.find(v => v.name.includes('Google') && v.name.includes('UK') && v.name.includes('Female')) ||
+        voices.find(v => v.lang === 'en-GB' && v.name.includes('Female')) ||
+        voices.find(v => v.lang === 'en-GB' && v.name.includes('Google')) ||
+        voices.find(v => v.lang === 'en-GB') ||
+        voices.find(v => v.lang.startsWith('en') && v.name.includes('Female'));
+      
+      if (targetVoice) {
+        utterance.voice = targetVoice;
+      }
+      
+      utterance.pitch = 1.16;
+      utterance.rate = 1.12;
+      utterance.lang = 'en-GB';
+      
+      window.speechSynthesis.speak(utterance);
+    };
+
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        attemptSpeech();
+        // Remove listener after first trigger to avoid multiple speakers
+        window.speechSynthesis.onvoiceschanged = null;
+      };
+    } else {
+      attemptSpeech();
     }
-    
-    utterance.pitch = 1.16;
-    utterance.rate = 1.12;
-    utterance.lang = 'en-GB';
-    
-    window.speechSynthesis.speak(utterance);
   };
 
   return (
