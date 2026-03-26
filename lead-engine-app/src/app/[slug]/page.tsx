@@ -5,6 +5,7 @@ import { getSiteConfig } from '@/lib/site-config';
 
 // The 30 pages mapped to slugs
 const pavingPages = [
+  'driveways', 'patios', 'block-paving', 'resin', 'landscaping',
   'driveways-croydon', 'driveways-sutton', 'driveways-surrey',
   'block-paving-croydon', 'block-paving-sutton', 
   'resin-driveways-croydon', 'resin-driveways-sutton',
@@ -14,6 +15,7 @@ const pavingPages = [
 ];
 
 const buildingPages = [
+  'extensions', 'loft-conversions', 'renovations', 'roofing', 'builders',
   'builders-croydon', 'builders-sutton', 'builders-surrey',
   'home-extensions-surrey', 'home-extensions-croydon',
   'loft-conversions-croydon', 'renovations-sutton',
