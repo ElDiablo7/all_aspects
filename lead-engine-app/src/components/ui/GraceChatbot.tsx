@@ -12,7 +12,7 @@ export default function GraceChatbot() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
   const config = getSiteConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -79,13 +79,13 @@ export default function GraceChatbot() {
       recognitionRef.current.interimResults = false;
       recognitionRef.current.lang = 'en-GB';
 
-      recognitionRef.current.onresult = (event: any) => {
+      recognitionRef.current.onresult = (event: SpeechRecognitionEvent) => {
         const transcript = event.results[0][0].transcript;
         setInput(transcript);
         setIsListening(false);
       };
 
-      recognitionRef.current.onerror = (event: any) => {
+      recognitionRef.current.onerror = (event: SpeechRecognitionErrorEvent) => {
         console.error('Speech recognition error:', event.error);
         setIsListening(false);
       };
@@ -117,7 +117,7 @@ export default function GraceChatbot() {
       utterance.voice = targetVoice;
     }
     
-    utterance.pitch = 1.15;
+    utterance.pitch = 1.16;
     utterance.rate = 1.12;
     utterance.lang = 'en-GB';
     
