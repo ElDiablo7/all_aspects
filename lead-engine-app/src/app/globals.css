@@ -2,47 +2,115 @@
 
 @theme {
   --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
   --color-slate-800: #1e293b;
   --color-amber-500: #f59e0b;
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  --background: #0f1e4a;
+  --foreground: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-bg-light: rgba(255, 255, 255, 0.85);
+  --glass-border-light: rgba(30, 64, 175, 0.2);
 }
 
 body {
-  background-color: var(--background);
+  background: linear-gradient(135deg, #0f1e4a 0%, #1e3a8a 50%, #0f1e4a 100%);
+  min-height: 100vh;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   scroll-behavior: smooth;
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.90);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+/* ── Glassmorphism Utilities ────────────────────────────── */
+
+/* Dark glass — for use on navy/blue hero backgrounds */
+.glass-dark {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
+/* Light glass — for use on off-white/light sections */
+.glass-panel {
+  background: var(--glass-bg-light);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--glass-border-light);
+  box-shadow: 0 4px 20px rgba(30, 64, 175, 0.08);
+}
+
+/* Card glass — service cards on coloured backgrounds */
+.glass-card {
+  background: rgba(255, 255, 255, 0.09);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.12);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245,158,11,0.2), inset 0 1px 0 rgba(255,255,255,0.15);
+  transform: translateY(-4px);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
 .btn-primary {
   @apply bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg cursor-pointer;
 }
 
 .btn-accent {
-  @apply bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition-transform hover:scale-105 shadow-xl cursor-pointer;
+  @apply bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition-all hover:scale-105 cursor-pointer;
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4), 0 0 0 0 rgba(245,158,11,0.5);
 }
 
+.btn-accent:hover {
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.6);
+}
+
+/* ── Animations ─────────────────────────────────────────── */
 .animate-pulse-slow {
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(3deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float:hover {
+  animation: none;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease;
+}
+
+/* ── Backgrounds ─────────────────────────────────────────── */
 .bg-pattern-dots {
-  background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0);
   background-size: 32px 32px;
 }
 
 .bg-pattern-dots-dark {
-  background-image: radial-gradient(circle at center, white 1px, transparent 0);
+  background-image: radial-gradient(circle at center, rgba(255,255,255,0.08) 1px, transparent 0);
   background-size: 16px 16px;
+}
+
+/* orb glow effects */
+.orb-blue {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
+}
+
+.orb-amber {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
 }

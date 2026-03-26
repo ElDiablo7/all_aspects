@@ -14,11 +14,16 @@ export default function Home() {
       />
       
       {/* Services Section */}
-      <section className="py-20 bg-slate-50">
-        <div className="container mx-auto px-4">
+      <section className="py-24 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #0f1e4a 0%, #1a2e6e 100%)'}}>
+        {/* Background orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 orb-blue opacity-30 blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 orb-amber opacity-20 blur-3xl pointer-events-none"></div>
+        <div className="bg-pattern-dots absolute inset-0 pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${config.textColor}`}>Our Core Services</h2>
-            <p className="text-slate-600 text-lg">We specialize in a wide range of services to improve and expand your home. Every project is completed to the highest standard.</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Core Services</h2>
+            <p className="text-blue-200 text-lg">We specialize in a wide range of services to improve and expand your home. Every project is completed to the highest standard.</p>
           </div>
           
           {(() => {
@@ -42,19 +47,20 @@ export default function Home() {
             return (
               <div className="grid md:grid-cols-3 gap-8">
                 {config.services.slice(0, 3).map((service, index) => (
-                  <div key={index} className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-slate-100 group overflow-hidden">
+                  <div key={index} className="glass-card rounded-2xl group overflow-hidden">
                     <div className="relative h-48 overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={serviceData[index].image}
                         alt={serviceData[index].alt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent"></div>
                     </div>
                     <div className="p-8">
-                      <h3 className="text-xl font-bold text-slate-800 mb-3">{service}</h3>
-                      <p className="text-slate-600 mb-6">{serviceData[index].description}</p>
-                      <a href={`/${service.toLowerCase().replace(' ', '-')}`} className="text-amber-600 font-bold hover:text-amber-700 flex items-center gap-1">
+                      <h3 className="text-xl font-bold text-white mb-3">{service}</h3>
+                      <p className="text-blue-200 mb-6">{serviceData[index].description}</p>
+                      <a href={`/${service.toLowerCase().replace(' ', '-')}`} className="text-amber-400 font-bold hover:text-amber-300 flex items-center gap-1 transition-colors">
                         Learn more <span>→</span>
                       </a>
                     </div>
@@ -67,7 +73,7 @@ export default function Home() {
       </section>
 
       {/* Trust Block */}
-      <section className="py-20 bg-white">
+      <section className="py-20 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #1a2e6e 0%, #0f1e4a 100%)'}}>
         <div className="container mx-auto px-4">
            <div className="flex flex-col md:flex-row items-center gap-12 bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
              <div className="md:w-1/2 p-12 md:p-16 text-white">
