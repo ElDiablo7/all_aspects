@@ -10,6 +10,7 @@ export async function submitLead(prevState: unknown, formData: FormData) {
     budgetRange: formData.get('budgetRange') as string,
     timeline: formData.get('timeline') as string,
     message: formData.get('message') as string,
+    timestamp: new Date().toISOString(),
   };
 
   // Validation
@@ -27,31 +28,47 @@ export async function submitLead(prevState: unknown, formData: FormData) {
   if (data.budgetRange === '10000_plus') score += 3;
   if (data.timeline === 'asap') score += 2;
   
-  const hotKeywords = ['full', 'new', 'install', 'complete'];
+  const hotKeywords = ['full', 'new', 'install', 'complete', 'urgently'];
   if (data.message && hotKeywords.some(kw => data.message.toLowerCase().includes(kw))) {
     score += 2;
   }
 
-  // Simple postcode check (mocking core radius logic)
-  const coreRegions = ['CR', 'SM', 'KT']; // Croydon, Sutton, Kingston
+  const coreRegions = ['CR', 'SM', 'KT', 'TW', 'GU', 'RH']; // Surrey & South London coverage
   if (data.postcode && coreRegions.some(region => data.postcode.toUpperCase().startsWith(region))) {
-    score += 2;
+    score += 3; // High regional intent
   }
 
-  // Photo upload (mocked absent for now)
-  // score += 1
-
   let temperature = 'Cold';
-  if (score >= 6) temperature = 'Hot';
-  else if (score >= 3) temperature = 'Warm';
+  if (score >= 8) temperature = 'Hot';
+  else if (score >= 4) temperature = 'Warm';
 
-  // Here you would normally send this to a CRM or Webhook
-  console.log(`[LEAD RECEIVED] ${bucket} Pipeline | Temp: ${temperature} | Score: ${score}`);
-  console.log(data);
+  // Simulation of CRM / Webhook integration
+  try {
+     const leadSummary = `[NEW LEAD] ${bucket} Pipeline | ${data.fullName} | ${temperature} (${score} pts) | ${data.postcode}`;
+     console.log('────────────────────────────────────────────────────────────────');
+     console.log(leadSummary);
+     console.log('Details:', JSON.stringify(data, null, 2));
+     console.log('────────────────────────────────────────────────────────────────');
 
-  return { 
-    success: true, 
-    message: 'Thank you! Your request has been received.',
-    leadData: { bucket, score, temperature }
-  };
+     // In production, uncomment this to send to a real endpoint:
+     /*
+     await fetch(process.env.WEBHOOK_URL!, {
+       method: 'POST',
+       body: JSON.stringify({ ...data, bucket, score, temperature }),
+       headers: { 'Content-Type': 'application/json' }
+     });
+     */
+
+     // Simulate a network delay for the UX
+     await new Promise(resolve => setTimeout(resolve, 1500));
+
+     return { 
+       success: true, 
+       message: 'Lead captured and routed successfully.',
+       leadMetadata: { bucket, temperature, score }
+     };
+  } catch (err) {
+     console.error('Lead submission failed:', err);
+     return { success: false, error: 'An error occurred while processing your request. Please call us directly.' };
+  }
 }
