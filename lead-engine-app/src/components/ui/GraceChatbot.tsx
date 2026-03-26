@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { getSiteConfig } from '@/lib/site-config';
 import { chat } from '@/app/actions/chat';
+import { sendInquiry } from '@/app/actions/sendInquiry';
 
 export default function GraceChatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +56,36 @@ export default function GraceChatbot() {
       const errorMsg = "I'm having a spot of trouble connecting. Please bear with me, or use the quote form if you're in a hurry!";
       setMessages(prev => [...prev, { role: 'agent', text: errorMsg }]);
       speak(errorMsg);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+    try {
+      const siteContext = config.domain.includes('paving') ? 'paving' : 'building';
+      const response = await sendInquiry(messages, siteContext);
+      if (response.success) {
+        setMessages(prev => [...prev, { role: 'agent', text: response.message }]);
+        speak(response.message);
+      }
+    } catch (error) {
+      console.error('Send inquiry error:', error);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  const handleSendInquiry = async () => {
+    setIsTyping(true);
+    try {
+      const siteContext = config.domain.includes('paving') ? 'paving' : 'building';
+      const response = await sendInquiry(messages, siteContext);
+      if (response.success) {
+        setMessages(prev => [...prev, { role: 'agent', text: response.message }]);
+        speak(response.message);
+      }
+    } catch (error) {
+      console.error('Send inquiry error:', error);
     } finally {
       setIsTyping(false);
     }
@@ -215,6 +246,12 @@ export default function GraceChatbot() {
                 {p}
               </button>
             ))}
+            <button 
+              onClick={handleSendInquiry}
+              className="flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-[10px] text-amber-400 font-bold hover:bg-amber-500/40 transition-all cursor-pointer shadow-lg"
+            >
+              📧 Send to Team
+            </button>
           </div>
 
           {/* Input Footer */}
