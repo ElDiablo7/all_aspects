@@ -5,51 +5,64 @@ export default function Footer() {
   const config = getSiteConfig();
 
   return (
-    <footer className="bg-slate-900 text-slate-300 py-12 mt-20">
-      <div className="container mx-auto px-4 grid md:grid-cols-4 gap-8">
-        <div>
-          <h3 className="text-xl font-bold text-white mb-4">{config.name}</h3>
-          <p className="text-sm mb-4">
-            Premium {config.services[0].toLowerCase()} and {config.services[1].toLowerCase()} solutions. Built on trust, delivered with excellence.
-          </p>
-          <div className="flex gap-4">
-            <a href={`tel:${config.phone.replace(/ /g, '')}`} className="text-white hover:text-amber-500 transition font-bold">{config.phone}</a>
+    <footer className="bg-blue-950/40 backdrop-blur-3xl text-blue-200/60 py-16 border-t border-white/5 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] orb-blue opacity-10 blur-[120px] pointer-events-none"></div>
+
+      <div className="container mx-auto px-4 grid md:grid-cols-4 gap-12 relative z-10">
+        <div className="space-y-4">
+          <div className="flex items-center gap-3 mb-6">
+            <div className={`w-10 h-10 rounded-xl shadow-lg flex items-center justify-center text-white font-bold text-xl ${config.primaryColor}`}>
+               {config.name.charAt(0)}
+            </div>
+            <h3 className="text-xl font-bold text-white tracking-tight">{config.name}</h3>
           </div>
-          <div className="mt-2">
-            <a href={`mailto:${config.email}`} className="text-slate-400 hover:text-white transition text-sm">{config.email}</a>
+          <p className="text-sm leading-relaxed">
+            Premium {config.services[0].toLowerCase()} and {config.services[1].toLowerCase()} solutions. Built on trust, delivered with excellence across Surrey and South London.
+          </p>
+          <div className="pt-4">
+            <a href={`tel:${config.phone.replace(/ /g, '')}`} className="text-white hover:text-amber-400 transition-colors font-bold text-lg flex items-center gap-2">
+              <span className="text-amber-500">📞</span> {config.phone}
+            </a>
+            <a href={`mailto:${config.email}`} className="text-blue-200/40 hover:text-white transition-colors text-xs mt-2 block tracking-wide">{config.email}</a>
           </div>
         </div>
+
         <div>
-          <h4 className="text-lg font-bold text-white mb-4">Core Services</h4>
-          <ul className="space-y-2 text-sm">
-            {config.services.map((service, i) => (
+          <h4 className="text-sm uppercase font-bold text-white mb-6 tracking-[0.2em]">Core Services</h4>
+          <ul className="space-y-3 text-sm">
+            {config.services.slice(0, 5).map((service, i) => (
               <li key={i}>
-                <Link href={`/${service.toLowerCase().replace(' ', '-')}`} className="hover:text-white transition">
+                <Link href={`/${service.toLowerCase().replace(' ', '-')}`} className="hover:text-amber-400 transition-colors flex items-center gap-2 group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:bg-amber-500 transition-colors"></span>
                   {service}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
+
         <div>
-          <h4 className="text-lg font-bold text-white mb-4">Information</h4>
-          <ul className="space-y-2 text-sm">
-            <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-            <li><Link href="/reviews" className="hover:text-white transition">Customer Reviews</Link></li>
-            <li><Link href="/faq" className="hover:text-white transition">FAQs</Link></li>
-            <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
+          <h4 className="text-sm uppercase font-bold text-white mb-6 tracking-[0.2em]">Information</h4>
+          <ul className="space-y-3 text-sm">
+            <li><Link href="/about" className="hover:text-amber-400 transition-colors">About Us</Link></li>
+            <li><Link href="/reviews" className="hover:text-amber-400 transition-colors">Customer Reviews</Link></li>
+            <li><Link href="/faq" className="hover:text-amber-400 transition-colors">FAQs</Link></li>
+            <li><Link href="/contact" className="hover:text-amber-400 transition-colors">Contact Support</Link></li>
           </ul>
         </div>
-        <div>
-          <h4 className="text-lg font-bold text-white mb-4">Get a Quote</h4>
-          <p className="text-sm mb-4">Ready to start your project? We offer free, no-obligation quotes and site surveys.</p>
-          <Link href="#quote" className="inline-block bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-2 px-6 rounded-lg transition-transform hover:scale-105">
-            Request Quote
+
+        <div className="glass-dark p-6 rounded-2xl border border-white/5">
+          <h4 className="text-sm uppercase font-bold text-white mb-4 tracking-widest text-center">Get a Quote</h4>
+          <p className="text-xs mb-6 text-center leading-relaxed">Ready to start? We offer free, no-obligation quotes and site surveys within 24 hours.</p>
+          <Link href="#quote" className="btn-accent w-full text-center py-3 rounded-xl text-sm transition-all shadow-[0_0_20px_rgba(245,158,11,0.2)]">
+            Request Quote Now
           </Link>
         </div>
       </div>
-      <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm text-slate-500">
-        <p>&copy; {new Date().getFullYear()} {config.name}. All rights reserved.</p>
+
+      <div className="border-t border-white/5 mt-16 pt-8 text-center text-[10px] uppercase tracking-[0.3em] text-blue-200/20">
+        <p>&copy; {new Date().getFullYear()} {config.name}. Professional Paving Excellence.</p>
       </div>
     </footer>
   );
