@@ -18,8 +18,7 @@ export default function Hero({
   return (
     <section className={`relative ${themeColor} text-white py-24 md:py-32 overflow-hidden`}>
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none" 
-           style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}>
+      <div className="absolute inset-0 opacity-10 pointer-events-none bg-pattern-dots">
       </div>
       
       <div className="container relative z-10 mx-auto px-4 text-center md:text-left flex flex-col md:flex-row items-center gap-12">
@@ -55,7 +54,7 @@ export default function Hero({
                <div className="absolute inset-0 bg-slate-800/80 m-1 rounded-xl"></div>
                <div className="relative z-10 p-4 bg-slate-900/50 backdrop-blur border border-white/10 rounded-lg">
                  <div className="flex text-amber-500 text-xl mb-2">★★★★★</div>
-                 <p className="italic text-slate-200 text-sm">"Absolutely transformed our property. Professional, clean, and the quality is outstanding. Highly recommended!"</p>
+                 <p className="italic text-slate-200 text-sm">&quot;Absolutely transformed our property. Professional, clean, and the quality is outstanding. Highly recommended!&quot;</p>
                  <p className="font-bold text-white mt-2 text-xs">— Sarah J., Local Customer</p>
                </div>
              </div>

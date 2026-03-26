@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import GraceChatbot from '@/components/ui/GraceChatbot';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <GraceChatbot />
       </body>
     </html>
   );

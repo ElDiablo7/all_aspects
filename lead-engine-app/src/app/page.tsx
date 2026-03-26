@@ -1,5 +1,6 @@
 import { getSiteConfig } from '@/lib/site-config';
 import Hero from '@/components/ui/Hero';
+import QuoteForm from '@/components/forms/QuoteForm';
 
 export default function Home() {
   const config = getSiteConfig();
@@ -64,7 +65,7 @@ export default function Home() {
                 <a href="#quote" className="btn-accent inline-block">Request a Site Survey</a>
              </div>
              <div className="md:w-1/2 min-h-64 bg-slate-800 relative w-full h-full p-8 flex items-center justify-center">
-                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at center, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
+                 <div className="absolute inset-0 opacity-20 bg-pattern-dots-dark"></div>
                  <div className="text-center relative z-10 glass-panel p-8 rounded-xl shadow-2xl">
                     <div className="text-6xl mb-4">🏠</div>
                     <div className="text-2xl font-bold text-slate-800">Transforming Homes</div>
@@ -74,13 +75,18 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Quote Form Placeholder */}
-      <section id="quote" className="py-20 bg-slate-100">
-         <div className="container mx-auto px-4 max-w-4xl text-center">
-            <h2 className={`text-3xl font-bold mb-4 ${config.textColor}`}>Get Your Free Quote</h2>
-            <p className="text-slate-600 mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
-            <div className="bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-slate-200">
-               <p className="text-slate-500 italic">Form component will be injected here</p>
+      {/* Quote Form Section */}
+      <section id="quote" className="py-20 bg-slate-100 relative overflow-hidden">
+         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500 rounded-full blur-3xl opacity-10 translate-x-1/2 -translate-y-1/2"></div>
+         <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-10 -translate-x-1/2 translate-y-1/2"></div>
+         
+         <div className="container relative z-10 mx-auto px-4 max-w-4xl pt-8">
+            <div className="text-center mb-10">
+              <h2 className={`text-3xl md:text-5xl font-extrabold tracking-tight mb-4 ${config.textColor}`}>Get Your Free Quote</h2>
+              <p className="text-slate-600 text-lg md:text-xl">Fill out the details below and our expert team will get right back to you.</p>
+            </div>
+            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-slate-100">
+               <QuoteForm />
             </div>
          </div>
       </section>

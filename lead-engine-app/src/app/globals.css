@@ -20,8 +20,8 @@ body {
 
 .glass-panel {
   background: rgba(255, 255, 255, 0.90);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 }
 
@@ -35,4 +35,14 @@ body {
 
 .animate-pulse-slow {
   animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bg-pattern-dots {
+  background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+.bg-pattern-dots-dark {
+  background-image: radial-gradient(circle at center, white 1px, transparent 0);
+  background-size: 16px 16px;
 }
