@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { getSiteConfig } from '@/lib/site-config';
+import { chat } from '@/app/actions/chat';
 
 export default function GraceChatbot() {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,7 @@ export default function GraceChatbot() {
     { role: 'agent', text: "Hi, I'm Grace. To give you the most accurate help, what kind of job do you need?" }
   ]);
   const [input, setInput] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const config = getSiteConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -16,37 +18,44 @@ export default function GraceChatbot() {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, isTyping]);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
-    const newMsgs = [...messages, { role: 'user' as const, text: input }];
+  const handleSend = async () => {
+    if (!input.trim() || isTyping) return;
+    
+    const userMsg = input.trim();
+    const newMsgs = [...messages, { role: 'user' as const, text: userMsg }];
     setMessages(newMsgs);
     setInput('');
+    setIsTyping(true);
     
-    setTimeout(() => {
-       const userMsgs = newMsgs.filter(m => m.role === 'user');
-       const qtys = userMsgs.length;
-       const lastMsg = userMsgs[qtys - 1].text.toLowerCase();
-       
-       let reply = '';
-       if (qtys === 1) {
-         reply = `Got it, ${lastMsg.includes('driveway') ? 'a new driveway' : 'that'} sounds like a great project. What postcode or area are you located in?`;
-       } else if (qtys === 2) {
-         reply = "Perfect. Roughly how big is the job or what is your target budget for this?";
-       } else if (qtys === 3) {
-         reply = "Excellent info. When are you looking to start? (ASAP, 1 month, or just planning?)";
-       } else {
-         reply = "Thanks for those details! Based on your answers, you're a high-priority lead. Please complete the 'Get Quote' form on the page so our survey team can call you for a formal site visit!";
-       }
-       
-       setMessages(prev => [...prev, { role: 'agent', text: reply }]);
-    }, 1200);
+    try {
+      // Map messages to the format expected by the server action
+      const chatMessages = newMsgs.map(m => ({
+        role: (m.role === 'agent' ? 'assistant' : 'user') as 'user' | 'assistant',
+        content: m.text
+      }));
+
+      // Call the Server Action
+      const siteContext = config.domain.includes('paving') ? 'paving' : 'building';
+      const response = await chat(chatMessages, siteContext);
+      
+      if (response && response.text) {
+        setMessages(prev => [...prev, { role: 'agent', text: response.text }]);
+      }
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, { 
+        role: 'agent', 
+        text: "I'm having a spot of trouble connecting. Please bear with me, or use the quote form if you're in a hurry!" 
+      }]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
     <>
-      {/* Floating Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 w-16 h-16 rounded-full glass-dark text-amber-400 text-3xl shadow-[0_0_30px_rgba(245,158,11,0.3)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 border border-white/20 cursor-pointer overflow-hidden group"
@@ -91,6 +100,17 @@ export default function GraceChatbot() {
                   </div>
                 </div>
              ))}
+             {isTyping && (
+                <div className="flex justify-start animate-in fade-in duration-300">
+                  <div className="bg-white/10 text-white border border-white/10 rounded-2xl rounded-tl-none px-4 py-3 backdrop-blur-md shadow-inner">
+                    <div className="flex gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    </div>
+                  </div>
+                </div>
+             )}
           </div>
 
           {/* Input Footer */}
