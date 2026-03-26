@@ -210,7 +210,7 @@ export default function GraceChatbot() {
               <button 
                 key={i} 
                 onClick={() => { setInput(p); setTimeout(handleSend, 100); }}
-                className="whitespace-nowrap px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] text-blue-200/80 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+                className="flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-[10px] text-blue-100 hover:bg-white/20 hover:text-white transition-all cursor-pointer shadow-sm"
               >
                 {p}
               </button>
