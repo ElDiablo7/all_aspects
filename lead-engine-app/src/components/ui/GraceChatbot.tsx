@@ -61,20 +61,6 @@ export default function GraceChatbot() {
     }
   };
 
-    try {
-      const siteContext = config.domain.includes('paving') ? 'paving' : 'building';
-      const response = await sendInquiry(messages, siteContext);
-      if (response.success) {
-        setMessages(prev => [...prev, { role: 'agent', text: response.message }]);
-        speak(response.message);
-      }
-    } catch (error) {
-      console.error('Send inquiry error:', error);
-    } finally {
-      setIsTyping(false);
-    }
-  };
-
   const handleSendInquiry = async () => {
     setIsTyping(true);
     try {
