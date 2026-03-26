@@ -11,6 +11,8 @@ export default function GraceChatbot() {
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef<any>(null);
   const config = getSiteConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -56,6 +58,45 @@ export default function GraceChatbot() {
     } finally {
       setIsTyping(false);
     }
+  };
+
+  const toggleListening = () => {
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("Speech recognition is not supported in this browser.");
+      return;
+    }
+
+    if (!recognitionRef.current) {
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'en-GB';
+
+      recognitionRef.current.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        setInput(transcript);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = (event: any) => {
+        console.error('Speech recognition error:', event.error);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+
+    recognitionRef.current.start();
+    setIsListening(true);
   };
 
   const speak = (text: string) => {
@@ -117,7 +158,7 @@ export default function GraceChatbot() {
           </div>
           
           {/* Messages Area */}
-          <div ref={scrollRef} className="flex-grow p-5 overflow-y-auto space-y-6 bg-blue-950/20 backdrop-blur-xl custom-scrollbar">
+          <div ref={scrollRef} className="flex-grow p-4 overflow-y-auto space-y-4 bg-blue-950/20 backdrop-blur-xl custom-scrollbar">
              {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
                   <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
@@ -142,14 +183,43 @@ export default function GraceChatbot() {
              )}
           </div>
 
+          {/* Quick Prompts */}
+          <div className="px-4 py-2 bg-blue-950/30 flex gap-2 overflow-x-auto no-scrollbar border-t border-white/5">
+            {[
+              "What area do you cover?",
+              "How do I get a quote?",
+              "What services do you offer?",
+              "Are you available now?"
+            ].map((p, i) => (
+              <button 
+                key={i} 
+                onClick={() => { setInput(p); setTimeout(handleSend, 100); }}
+                className="whitespace-nowrap px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] text-blue-200/80 hover:bg-white/10 hover:text-white transition-all cursor-pointer"
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+
           {/* Input Footer */}
-          <div className="p-4 bg-blue-950/40 backdrop-blur-2xl border-t border-white/5 flex gap-3 pb-6">
+          <div className="p-4 bg-blue-950/40 backdrop-blur-2xl border-t border-white/5 flex gap-2 pb-6">
+            <button 
+              onClick={toggleListening}
+              className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all shadow-lg ${
+                isListening 
+                  ? 'bg-red-500 text-white animate-pulse' 
+                  : 'bg-white/5 text-blue-200 hover:bg-white/10'
+              } border border-white/10 cursor-pointer`}
+              title="Speak to Grace"
+            >
+              {isListening ? '⏺' : '🎤'}
+            </button>
             <input 
               type="text" 
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSend()}
-              placeholder="Tell me about your job..."
+              placeholder={isListening ? "Listening..." : "Tell me about your job..."}
               className="flex-grow px-5 py-3 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-500/50 outline-none text-sm text-white placeholder:text-blue-200/40 transition-all font-medium"
             />
             <button 
