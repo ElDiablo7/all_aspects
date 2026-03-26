@@ -8,8 +8,8 @@ import GraceChatbot from '@/components/ui/GraceChatbot';
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
-  title: 'All Aspects Solutions',
-  description: 'Premium Paving and Building Solutions. Request a free quote today.',
+  title: 'All Aspects Paving | Surrey Driveways & Patios Specialists',
+  description: '20+ years experience installing premium driveways, patios, block paving & landscaping across Surrey & South London. Checkatrade rated 9.6/10. Get a free no-obligation quote today.',
 };
 
 export default function RootLayout({

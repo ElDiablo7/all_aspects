@@ -17,7 +17,7 @@ export const getSiteConfig = () => {
   return {
     domain: 'allaspectspaving.co.uk',
     name: 'All Aspects Paving',
-    phone: '0800 123 4567',
+    phone: '0800 959 6695',
     primaryColor: 'bg-blue-800',
     textColor: 'text-blue-800',
     services: ['Driveways', 'Patios', 'Block Paving', 'Resin', 'Landscaping'],
