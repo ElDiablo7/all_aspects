@@ -20,6 +20,12 @@ export default function GraceChatbot() {
     }
   }, [messages, isTyping]);
 
+  useEffect(() => {
+    if (isOpen && messages.length === 1 && messages[0].role === 'agent') {
+      speak(messages[0].text);
+    }
+  }, [isOpen]);
+
   const handleSend = async () => {
     if (!input.trim() || isTyping) return;
     
