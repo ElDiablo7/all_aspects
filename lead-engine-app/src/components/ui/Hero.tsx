@@ -57,6 +57,7 @@ export default function Hero({
                  alt="Premium driveway installed by All Aspects Paving in Surrey"
                  fill
                  priority
+                 unoptimized
                  className="object-cover"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>

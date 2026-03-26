@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 glass-panel">
       <div className="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" prefetch={false} className="flex items-center gap-3">
           <div className={`w-10 h-10 rounded-xl shadow-lg flex items-center justify-center text-white font-bold text-xl ${config.primaryColor}`}
                style={{boxShadow: '0 4px 15px rgba(30,64,175,0.4)'}}>
              {config.name.charAt(0)}

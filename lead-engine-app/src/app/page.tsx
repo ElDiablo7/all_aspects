@@ -54,6 +54,7 @@ export default function Home() {
                         src={serviceData[index].image}
                         alt={serviceData[index].alt}
                         fill
+                        unoptimized
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent"></div>
@@ -104,6 +105,7 @@ export default function Home() {
                   src="https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/6571003b-70e6-4e48-a766-5b31e8cd53bd/unnamed-1.webp"
                   alt="All Aspects Paving completed project in Surrey"
                   fill
+                  unoptimized
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-slate-900/40"></div>
