@@ -13,7 +13,7 @@ export default function GraceChatbot() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<SpeechRecognition | null>(null);
   const config = getSiteConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -203,17 +203,17 @@ export default function GraceChatbot() {
                   </div>
                 </div>
              ))}
-             {isTyping && (
+              {isTyping && (
                 <div className="flex justify-start animate-in fade-in duration-300">
                   <div className="bg-white/10 text-white border border-white/10 rounded-2xl rounded-tl-none px-4 py-3 backdrop-blur-md shadow-inner">
                     <div className="flex gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce [animation-delay:0ms]"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce [animation-delay:150ms]"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce [animation-delay:300ms]"></span>
                     </div>
                   </div>
                 </div>
-             )}
+              )}
           </div>
 
           {/* Quick Prompts */}
@@ -259,7 +259,7 @@ export default function GraceChatbot() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSend()}
               placeholder={isListening ? "Listening..." : "Tell me about your job..."}
-              className="flex-grow px-5 py-3 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-500/50 outline-none text-sm text-white placeholder:text-blue-200/40 transition-all font-medium"
+              className="flex-grow px-5 py-3 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-500/50 outline-none text-base text-white placeholder:text-blue-200/40 transition-all font-medium"
             />
             <button 
               onClick={handleSend} 

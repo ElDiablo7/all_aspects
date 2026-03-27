@@ -2,7 +2,12 @@
 
 import { getSiteConfig } from '@/lib/site-config';
 
-export async function sendInquiry(messages: {role: string, text: string}[], siteContext: string) {
+export type ActionState = {
+  success: boolean;
+  message: string;
+};
+
+export async function sendInquiry(messages: {role: string, text: string}[], siteContext: string): Promise<ActionState> {
   const config = getSiteConfig();
   const businessEmail = config.email || 'info@allaspectspaving.co.uk';
   
@@ -22,6 +27,6 @@ export async function sendInquiry(messages: {role: string, text: string}[], site
 
   return { 
     success: true, 
-    message: 'Your inquiry has been sent to our team. We\'ll be in touch shortly!' 
+    message: 'Your inquiry has been sent. Our team will lead the way from here!' 
   };
 }

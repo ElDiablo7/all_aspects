@@ -1,7 +1,32 @@
 'use server';
 
-export async function submitLead(prevState: unknown, formData: FormData) {
-  const data = {
+import { z } from 'zod';
+
+const LeadSchema = z.object({
+  fullName: z.string().min(2, 'Full name is required'),
+  phone: z.string().min(10, 'Phone number must be at least 10 digits'),
+  email: z.string().email('Invalid email address').optional().or(z.literal('')),
+  postcode: z.string().min(5, 'Valid UK postcode is required'),
+  serviceType: z.string().min(1, 'Please select a service'),
+  budgetRange: z.string().min(1, 'Please select a budget range'),
+  timeline: z.string().min(1, 'Please select a timeline'),
+  message: z.string().optional(),
+  honeypot: z.string().max(0, 'Spam detected'), // Must be empty
+});
+
+export type ActionState = {
+  success: boolean;
+  message?: string;
+  errors?: Record<string, string[]>;
+  leadMetadata?: {
+    bucket: string;
+    temperature: string;
+    score: number;
+  };
+};
+
+export async function submitLead(prevState: ActionState | null, formData: FormData): Promise<ActionState> {
+  const rawData = {
     fullName: formData.get('fullName') as string,
     phone: formData.get('phone') as string,
     email: formData.get('email') as string,
@@ -10,65 +35,67 @@ export async function submitLead(prevState: unknown, formData: FormData) {
     budgetRange: formData.get('budgetRange') as string,
     timeline: formData.get('timeline') as string,
     message: formData.get('message') as string,
-    timestamp: new Date().toISOString(),
+    honeypot: formData.get('website_url') as string, // This is the hidden field name
   };
 
-  // Validation
-  if (!data.fullName || !data.phone || !data.postcode || !data.serviceType || !data.budgetRange || !data.timeline) {
-    return { success: false, error: 'Please fill out all required fields.' };
+  // 1. Validate with Zod
+  const validatedFields = LeadSchema.safeParse(rawData);
+
+  if (!validatedFields.success) {
+    return {
+      success: false,
+      message: 'Please check the form for errors.',
+      errors: validatedFields.error.flatten().fieldErrors as Record<string, string[]>,
+    };
   }
 
-  // Routing Logic
+  const data = validatedFields.data;
+
+  // 2. Routing Logic
   const pavingServices = ['driveway', 'block paving', 'resin driveway', 'patio', 'paving', 'landscaping'];
   const bucket = pavingServices.includes(data.serviceType.toLowerCase()) ? 'PAVING' : 'BUILDING';
 
-  // Scoring Logic
+  // 3. Scoring Logic
   let score = 0;
   
   if (data.budgetRange === '10000_plus') score += 3;
   if (data.timeline === 'asap') score += 2;
   
   const hotKeywords = ['full', 'new', 'install', 'complete', 'urgently'];
-  if (data.message && hotKeywords.some(kw => data.message.toLowerCase().includes(kw))) {
+  if (data.message && hotKeywords.some(kw => data.message?.toLowerCase().includes(kw))) {
     score += 2;
   }
 
-  const coreRegions = ['CR', 'SM', 'KT', 'TW', 'GU', 'RH']; // Surrey & South London coverage
+  const coreRegions = ['CR', 'SM', 'KT', 'TW', 'GU', 'RH'];
   if (data.postcode && coreRegions.some(region => data.postcode.toUpperCase().startsWith(region))) {
-    score += 3; // High regional intent
+    score += 3;
   }
 
   let temperature = 'Cold';
   if (score >= 8) temperature = 'Hot';
   else if (score >= 4) temperature = 'Warm';
 
-  // Simulation of CRM / Webhook integration
+  // 4. Submission Processing
   try {
      const leadSummary = `[NEW LEAD] ${bucket} Pipeline | ${data.fullName} | ${temperature} (${score} pts) | ${data.postcode}`;
      console.log('────────────────────────────────────────────────────────────────');
      console.log(leadSummary);
-     console.log('Details:', JSON.stringify(data, null, 2));
+     console.log('Details:', JSON.stringify({ ...data, timestamp: new Date().toISOString() }, null, 2));
      console.log('────────────────────────────────────────────────────────────────');
 
-     // In production, uncomment this to send to a real endpoint:
-     /*
-     await fetch(process.env.WEBHOOK_URL!, {
-       method: 'POST',
-       body: JSON.stringify({ ...data, bucket, score, temperature }),
-       headers: { 'Content-Type': 'application/json' }
-     });
-     */
-
-     // Simulate a network delay for the UX
+     // Simulate network delay
      await new Promise(resolve => setTimeout(resolve, 1500));
 
      return { 
        success: true, 
-       message: 'Lead captured and routed successfully.',
+       message: 'Your request has been received. Our team will contact you shortly.',
        leadMetadata: { bucket, temperature, score }
      };
   } catch (err) {
-     console.error('Lead submission failed:', err);
-     return { success: false, error: 'An error occurred while processing your request. Please call us directly.' };
+     console.error('Lead submission failure:', err);
+     return { 
+       success: false, 
+       message: 'A technical error occurred. Please call us directly for a faster response.' 
+     };
   }
 }
