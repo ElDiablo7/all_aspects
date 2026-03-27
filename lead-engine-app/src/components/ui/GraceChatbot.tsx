@@ -13,7 +13,6 @@ export default function GraceChatbot() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isListening, setIsListening] = useState(false);
-  // @ts-expect-error - SpeechRecognition is not in standard types
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
   const config = getSiteConfig();
