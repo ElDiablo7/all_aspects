@@ -55,7 +55,7 @@ export default function QuoteForm() {
               name="serviceType" 
               required 
               aria-label="Select Service Type"
-              className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.serviceType ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer`}
+              className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.serviceType ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none appearance-none cursor-pointer placeholder:text-blue-100/70`}
             >
               <option value="" className="text-slate-900">Select a service...</option>
               {config.services.map(s => (
@@ -75,7 +75,7 @@ export default function QuoteForm() {
               name="timeline" 
               required 
               aria-label="Select Project Timeline"
-              className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.timeline ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer`}
+              className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.timeline ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none appearance-none cursor-pointer placeholder:text-blue-100/70`}
             >
               <option value="" className="text-slate-900">When do you need it?</option>
               <option value="asap" className="text-slate-900">ASAP / Ready now</option>
@@ -96,7 +96,7 @@ export default function QuoteForm() {
             name="budgetRange" 
             required 
             aria-label="Select Estimated Budget"
-            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.budgetRange ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer`}
+            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.budgetRange ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none appearance-none cursor-pointer placeholder:text-blue-100/70`}
           >
              <option value="" className="text-slate-900">Select budget range...</option>
              <option value="under_1000" className="text-slate-900">Under £1,000</option>
@@ -114,7 +114,7 @@ export default function QuoteForm() {
         <textarea 
           name="message" 
           rows={3} 
-          className="w-full px-5 py-4 rounded-2xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none resize-none" 
+          className="w-full px-5 py-4 rounded-2xl border border-white/20 bg-white/10 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none resize-none placeholder:text-blue-100/70" 
           placeholder="Tell us more about what you need... (optional)"
         ></textarea>
       </div>
@@ -133,7 +133,7 @@ export default function QuoteForm() {
             type="text" 
             name="fullName" 
             required 
-            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.fullName ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none`} 
+            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.fullName ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none placeholder:text-blue-100/70`} 
             placeholder="John Doe" 
           />
           {state?.errors?.fullName && <p className="text-xs text-red-400 font-medium ml-1">{state.errors.fullName[0]}</p>}
@@ -144,7 +144,7 @@ export default function QuoteForm() {
             type="text" 
             name="postcode" 
             required 
-            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.postcode ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none`} 
+            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.postcode ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none placeholder:text-blue-100/70`} 
             placeholder="CR0 1AB" 
           />
           {state?.errors?.postcode && <p className="text-xs text-red-400 font-medium ml-1">{state.errors.postcode[0]}</p>}
@@ -158,7 +158,7 @@ export default function QuoteForm() {
             type="tel" 
             name="phone" 
             required 
-            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.phone ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none`} 
+            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.phone ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none placeholder:text-blue-100/70`} 
             placeholder="07123 456789" 
           />
           {state?.errors?.phone && <p className="text-xs text-red-400 font-medium ml-1">{state.errors.phone[0]}</p>}
@@ -168,7 +168,7 @@ export default function QuoteForm() {
           <input 
             type="email" 
             name="email" 
-            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.email ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none`} 
+            className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.email ? 'border-red-500/50 bg-red-500/10' : 'border-white/20 bg-white/10'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/15 transition-all outline-none placeholder:text-blue-100/70`} 
             placeholder="john@example.com" 
           />
           {state?.errors?.email && <p className="text-xs text-red-400 font-medium ml-1">{state.errors.email[0]}</p>}

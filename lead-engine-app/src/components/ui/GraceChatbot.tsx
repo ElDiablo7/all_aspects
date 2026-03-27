@@ -263,7 +263,7 @@ export default function GraceChatbot() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSend()}
               placeholder={isListening ? "Listening..." : "Tell me about your job..."}
-              className="flex-grow px-5 py-3 bg-white/5 border border-white/10 rounded-2xl focus:ring-2 focus:ring-amber-500/50 outline-none text-base text-white placeholder:text-blue-200/40 transition-all font-medium"
+              className="flex-grow px-5 py-3 bg-white/10 border border-white/20 rounded-2xl focus:ring-2 focus:ring-amber-500/50 outline-none text-base text-white placeholder:text-blue-100/70 transition-all font-medium"
             />
             <button 
               onClick={handleSend} 
