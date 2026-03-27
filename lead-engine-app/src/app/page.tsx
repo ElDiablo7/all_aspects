@@ -30,18 +30,18 @@ export default function Home() {
           {(() => {
             const serviceData = [
               {
-                image: 'https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/7b302b74-3ea4-4031-8877-cf8107b9ff5d/unnamed-2.webp',
-                alt: 'Driveway installation by All Aspects Paving',
+                image: '/images/paving_driveway.png',
+                alt: 'Premium driveway installation by All Aspects Paving',
                 description: 'From block paving to resin-bound surfaces — our driveways are built for beauty, durability, and long-lasting kerb appeal.',
               },
               {
-                image: 'https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/a17be0a2-7086-4c54-8aa3-1be7a42b7253/unnamed-3.webp',
-                alt: 'Patio installation by All Aspects Paving',
+                image: '/images/paving_patio.png',
+                alt: 'Bespoke patio installation by All Aspects Paving',
                 description: 'Transform your outdoor space with a bespoke patio, expertly laid using Indian stone, porcelain, or block paving.',
               },
               {
-                image: 'https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/615aab4f-ce9c-4f7e-9e5d-4ee81890ad1e/unnamed-4.webp',
-                alt: 'Block paving installed by All Aspects Paving',
+                image: '/images/paving_block.png',
+                alt: 'High-quality block paving installed by All Aspects Paving',
                 description: 'Our signature block paving solutions offer unmatched precision and a premium finish that adds real value to your property.',
               },
             ];

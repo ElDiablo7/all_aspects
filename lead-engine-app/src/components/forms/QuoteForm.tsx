@@ -39,7 +39,7 @@ export default function QuoteForm() {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-semibold text-blue-100 mb-2">Service Type *</label>
-          <select name="serviceType" required className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none">
+          <select name="serviceType" required className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none">
             <option value="" className="text-slate-900">Select a service...</option>
             {config.services.map(s => (
                <option key={s} value={s.toLowerCase()} className="text-slate-900">{s}</option>
@@ -49,7 +49,7 @@ export default function QuoteForm() {
         </div>
         <div>
           <label className="block text-sm font-semibold text-blue-100 mb-2">Timeline *</label>
-          <select name="timeline" required className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none">
+          <select name="timeline" required className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none">
             <option value="" className="text-slate-900">When do you need it?</option>
             <option value="asap" className="text-slate-900">ASAP / Ready now</option>
             <option value="1_month" className="text-slate-900">Within 1 Month</option>
@@ -62,7 +62,7 @@ export default function QuoteForm() {
       <div className="grid md:grid-cols-2 gap-6">
         <div className="md:col-span-2">
           <label className="block text-sm font-semibold text-blue-100 mb-2">Estimated Budget *</label>
-          <select name="budgetRange" required className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none">
+          <select name="budgetRange" required className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none">
              <option value="" className="text-slate-900">Select budget range...</option>
              <option value="under_1000" className="text-slate-900">Under £1,000</option>
              <option value="1000_5000" className="text-slate-900">£1,000 - £5,000</option>
@@ -74,7 +74,7 @@ export default function QuoteForm() {
 
       <div>
         <label className="block text-sm font-semibold text-blue-100 mb-2">Project Notes & Requirements</label>
-        <textarea name="message" rows={3} className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="Tell us more about what you need..."></textarea>
+        <textarea name="message" rows={3} className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="Tell us more about what you need..."></textarea>
       </div>
 
       <div>
@@ -87,22 +87,22 @@ export default function QuoteForm() {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-semibold text-blue-100 mb-2">Full Name *</label>
-          <input type="text" name="fullName" required className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="John Doe" />
+          <input type="text" name="fullName" required className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="John Doe" />
         </div>
         <div>
           <label className="block text-sm font-semibold text-blue-100 mb-2">Postcode *</label>
-          <input type="text" name="postcode" required className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="CR0 1AB" />
+          <input type="text" name="postcode" required className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="CR0 1AB" />
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-semibold text-blue-100 mb-2">Phone Number *</label>
-          <input type="tel" name="phone" required className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="07123 456789" />
+          <input type="tel" name="phone" required className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="07123 456789" />
         </div>
         <div>
           <label className="block text-sm font-semibold text-blue-100 mb-2">Email Address</label>
-          <input type="email" name="email" className="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="john@example.com" />
+          <input type="email" name="email" className="w-full px-4 py-4 rounded-xl border border-white/10 bg-white/5 text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none" placeholder="john@example.com" />
         </div>
       </div>
 
