@@ -54,6 +54,7 @@ export default function QuoteForm() {
             <select 
               name="serviceType" 
               required 
+              aria-label="Select Service Type"
               className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.serviceType ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer`}
             >
               <option value="" className="text-slate-900">Select a service...</option>
@@ -73,6 +74,7 @@ export default function QuoteForm() {
             <select 
               name="timeline" 
               required 
+              aria-label="Select Project Timeline"
               className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.timeline ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer`}
             >
               <option value="" className="text-slate-900">When do you need it?</option>
@@ -93,6 +95,7 @@ export default function QuoteForm() {
           <select 
             name="budgetRange" 
             required 
+            aria-label="Select Estimated Budget"
             className={`w-full px-5 py-4 rounded-2xl border ${state?.errors?.budgetRange ? 'border-red-500/50 bg-red-500/5' : 'border-white/10 bg-white/5'} text-white text-base focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:bg-white/10 transition-all outline-none appearance-none cursor-pointer`}
           >
              <option value="" className="text-slate-900">Select budget range...</option>
