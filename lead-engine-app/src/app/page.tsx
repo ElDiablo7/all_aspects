@@ -15,7 +15,7 @@ export default function Home() {
       />
       
       {/* Services Section */}
-      <section className="py-24 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #0f1e4a 0%, #1a2e6e 100%)'}}>
+      <section className="py-24 relative overflow-hidden bg-gradient-to-b from-[#0f1e4a] to-[#1a2e6e]">
         {/* Background orbs */}
         <div className="absolute top-0 left-1/4 w-96 h-96 orb-blue opacity-30 blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 orb-amber opacity-20 blur-3xl pointer-events-none"></div>
@@ -75,7 +75,7 @@ export default function Home() {
       </section>
 
       {/* Trust Block */}
-      <section className="py-20 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #1a2e6e 0%, #0f1e4a 100%)'}}>
+      <section className="py-20 relative overflow-hidden bg-gradient-to-b from-[#1a2e6e] to-[#0f1e4a]">
         <div className="container mx-auto px-4">
            <div className="flex flex-col md:flex-row items-center gap-12 bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
              <div className="md:w-1/2 p-12 md:p-16 text-white">
@@ -100,7 +100,7 @@ export default function Home() {
                 </ul>
                 <a href="#quote" className="btn-accent inline-block">Request a Site Survey</a>
              </div>
-              <div className="md:w-1/2 min-h-64 relative w-full overflow-hidden" style={{minHeight: '300px'}}>
+              <div className="md:w-1/2 min-h-[300px] relative w-full overflow-hidden">
                 <Image
                   src="https://files.elfsightcdn.com/85ef4678-86da-4193-bb1f-16b97e295b4d/6571003b-70e6-4e48-a766-5b31e8cd53bd/unnamed-1.webp"
                   alt="All Aspects Paving completed project in Surrey"
@@ -115,7 +115,7 @@ export default function Home() {
       </section>
       
       {/* Quote Form Section */}
-      <section id="quote" className="py-24 relative overflow-hidden" style={{background: 'linear-gradient(180deg, #0f1e4a 0%, #1a2e6e 100%)'}}>
+      <section id="quote" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#0f1e4a] to-[#1a2e6e]">
          <div className="absolute top-0 right-0 w-96 h-96 orb-amber opacity-20 blur-3xl pointer-events-none"></div>
          <div className="absolute bottom-0 left-0 w-96 h-96 orb-blue opacity-30 blur-3xl pointer-events-none"></div>
          <div className="bg-pattern-dots absolute inset-0 pointer-events-none"></div>
