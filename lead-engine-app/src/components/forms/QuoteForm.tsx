@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
+import Link from 'next/link';
 import { submitLead } from '@/app/actions/submitLead';
 import { getSiteConfig } from '@/lib/site-config';
 
@@ -175,7 +176,7 @@ export default function QuoteForm() {
         <div className="mb-6 flex items-start gap-3 text-blue-200/60 ml-1">
            <input type="checkbox" required className="mt-1 w-4 h-4 rounded border-white/10 bg-white/5 checked:bg-amber-500 cursor-pointer" id="privacy" />
            <label htmlFor="privacy" className="text-xs leading-tight cursor-pointer">
-             I agree to the <a href="#" className="underline hover:text-white">Privacy Policy</a> and consent to being contacted regarding this project request.
+             I agree to the <Link href="/privacy" className="underline hover:text-white">Privacy Policy</Link> and consent to being contacted regarding this project request.
            </label>
         </div>
 

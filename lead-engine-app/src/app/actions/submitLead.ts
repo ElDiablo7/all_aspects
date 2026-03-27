@@ -1,6 +1,7 @@
 'use server';
 
 import { z } from 'zod';
+import { getSiteConfig } from '@/lib/site-config';
 
 const LeadSchema = z.object({
   fullName: z.string().min(2, 'Full name is required'),
@@ -26,6 +27,9 @@ export type ActionState = {
 };
 
 export async function submitLead(prevState: ActionState | null, formData: FormData): Promise<ActionState> {
+  const config = getSiteConfig();
+  const businessEmail = config.email || 'info@allaspectspaving.co.uk';
+
   const rawData = {
     fullName: formData.get('fullName') as string,
     phone: formData.get('phone') as string,
@@ -80,6 +84,7 @@ export async function submitLead(prevState: ActionState | null, formData: FormDa
      const leadSummary = `[NEW LEAD] ${bucket} Pipeline | ${data.fullName} | ${temperature} (${score} pts) | ${data.postcode}`;
      console.log('────────────────────────────────────────────────────────────────');
      console.log(leadSummary);
+     console.log(`[EMAIL ROUTING] Forwarding to: ${businessEmail}`);
      console.log('Details:', JSON.stringify({ ...data, timestamp: new Date().toISOString() }, null, 2));
      console.log('────────────────────────────────────────────────────────────────');
 
