@@ -56,6 +56,7 @@ export default function Home() {
                         fill
                         unoptimized
                         className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-blue-950/20 to-transparent"></div>
                       <div className="absolute top-4 right-4 glass-shiny p-2 rounded-xl border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -110,6 +111,7 @@ export default function Home() {
                   fill
                   unoptimized
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-slate-900/40"></div>
               </div>
