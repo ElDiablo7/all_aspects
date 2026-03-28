@@ -167,7 +167,8 @@ export default function GraceChatbot() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 w-16 h-16 rounded-2xl glass-shiny depth-3d flex items-center justify-center transition-all duration-500 z-50 group border border-white/20 hover:scale-110 active:scale-95 animate-pulse-slow"
+          className="fixed z-[100] w-16 h-16 rounded-2xl glass-shiny depth-3d flex items-center justify-center transition-all duration-500 group border border-white/20 hover:scale-110 active:scale-95 animate-pulse-slow"
+          style={{ bottom: '1.5rem', right: '1.5rem', left: 'auto' }}
           aria-label="Open Chat"
         >
           <div className="absolute inset-0 bg-amber-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -177,7 +178,10 @@ export default function GraceChatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-[92vw] md:w-[400px] h-[600px] max-h-[85vh] glass-shiny depth-3d rounded-[32px] flex flex-col transition-all duration-500 z-50 border border-white/20 origin-bottom-right animate-in slide-in-from-bottom-8 scale-in-95">
+        <div 
+          className="fixed z-[100] w-[calc(100%-2rem)] md:w-[400px] h-[600px] max-h-[85vh] glass-shiny depth-3d rounded-[32px] flex flex-col transition-all duration-500 border border-white/20 origin-bottom md:origin-bottom-right animate-in slide-in-from-bottom-8 scale-in-95"
+          style={{ bottom: '1.5rem', right: '1.5rem', left: 'auto' }}
+        >
           
           {/* Header */}
           <div className="p-6 border-b border-white/10 flex items-center justify-between bg-white/5">

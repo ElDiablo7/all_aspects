@@ -11,10 +11,10 @@ export default function Header() {
         <Link href="/" prefetch={false} className="flex items-center gap-3 group">
           <div className="relative w-64 h-16 md:w-[480px] md:h-[120px] transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_25px_rgba(59,130,246,0.7)]">
             <Image
-              src="/logo_neon.png"
+              src="/logo_premium.png"
               alt={config.name}
               fill
-              className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+              className="object-contain drop-shadow-[0_2px_10px_rgba(59,130,246,0.3)]"
               unoptimized
             />
           </div>

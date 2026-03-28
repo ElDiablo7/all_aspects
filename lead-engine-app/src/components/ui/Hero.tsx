@@ -22,7 +22,7 @@ export default function Hero({
       <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.3),transparent_70%)]"></div>
       
       <div className="container relative z-10 mx-auto px-4 text-center md:text-left flex flex-col md:flex-row items-center gap-12">
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 order-2 md:order-1">
           <h1 className="text-4xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-6 text-white drop-shadow-2xl">
             {title}
           </h1>
@@ -47,7 +47,7 @@ export default function Hero({
         </div>
         
         {/* Hero Image with 3D Depth */}
-        <div className="md:w-1/2 relative perspective-1000">
+        <div className="md:w-1/2 order-1 md:order-2 relative perspective-1000 w-full max-w-[260px] md:max-w-none mx-auto mb-6 md:mb-0">
            <div className="aspect-square relative flex items-center justify-center animate-float">
              <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/30 to-blue-500/30 rounded-full blur-3xl mix-blend-screen animate-pulse-slow"></div>
              <div className="relative glass-shiny w-5/6 h-5/6 rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] transform rotate-y-12 rotate-x-6 hover:rotate-0 transition-transform duration-700 overflow-hidden border border-white/20">
@@ -57,6 +57,7 @@ export default function Hero({
                  fill
                  priority
                  className="object-cover scale-110"
+                 sizes="(max-width: 768px) 100vw, 50vw"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
                <div className="absolute bottom-6 left-6 right-6 z-10 p-5 glass-shiny backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl translate-z-10">
