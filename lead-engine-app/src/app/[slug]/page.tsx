@@ -112,9 +112,9 @@ export default async function ServicePage({ params }: Props) {
                 </div>
               ))}
             </div>
-            <div className="mt-16 text-center glass-dark p-10 rounded-3xl border border-white/10 bg-slate-50">
-               <h3 className="text-2xl font-bold text-slate-800 mb-4">Still have questions?</h3>
-               <p className="text-slate-600 mb-8 max-w-lg mx-auto italic">Our team is always happy to help with technical queries or planning advice.</p>
+            <div className="mt-16 text-center glass-dark p-10 rounded-3xl border border-white/10">
+               <h3 className="text-2xl font-bold text-white mb-4">Still have questions?</h3>
+               <p className="text-blue-200 mb-8 max-w-lg mx-auto italic">Our team is always happy to help with technical queries or planning advice.</p>
                <QuoteForm />
             </div>
           </div>
@@ -159,7 +159,7 @@ export default async function ServicePage({ params }: Props) {
               <h2 className={`text-3xl md:text-5xl font-extrabold tracking-tight mb-4 ${config.textColor}`}>Get Your Free Quote</h2>
               <p className="text-slate-600 text-lg md:text-xl">Enquire about <strong>{title.toLowerCase()}</strong> today.</p>
             </div>
-            <div className="bg-white p-8 md:p-12 rounded-3xl shadow-2xl border border-slate-100">
+            <div className="glass-dark p-8 md:p-12 rounded-3xl shadow-2xl border border-white/10 group transition-all duration-500 hover:shadow-[0_0_50px_rgba(245,158,11,0.1)]">
                <QuoteForm />
             </div>
          </div>

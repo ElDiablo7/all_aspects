@@ -39,7 +39,7 @@ export async function submitLead(prevState: ActionState | null, formData: FormDa
     budgetRange: formData.get('budgetRange') as string,
     timeline: formData.get('timeline') as string,
     message: formData.get('message') as string,
-    honeypot: formData.get('website_url') as string, // This is the hidden field name
+    honeypot: formData.get('fax_number') as string, // Updated field name
   };
 
   // 1. Validate with Zod
@@ -56,7 +56,7 @@ export async function submitLead(prevState: ActionState | null, formData: FormDa
   const data = validatedFields.data;
 
   // 2. Routing Logic
-  const pavingServices = ['driveway', 'block paving', 'resin driveway', 'patio', 'paving', 'landscaping'];
+  const pavingServices = ['driveway', 'driveways', 'block paving', 'resin', 'resin driveway', 'patio', 'patios', 'paving', 'landscaping'];
   const bucket = pavingServices.includes(data.serviceType.toLowerCase()) ? 'PAVING' : 'BUILDING';
 
   // 3. Scoring Logic

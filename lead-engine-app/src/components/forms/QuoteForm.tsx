@@ -31,7 +31,7 @@ export default function QuoteForm() {
     <form action={formAction} className="space-y-8 text-left relative">
       {/* Honeypot field - hidden from users */}
       <div className="hidden" aria-hidden="true">
-        <input type="text" name="website_url" tabIndex={-1} autoComplete="off" />
+        <input type="text" name="fax_number" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div>
