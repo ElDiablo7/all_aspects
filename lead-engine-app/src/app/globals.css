@@ -24,7 +24,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* ── Glassmorphism Utilities ────────────────────────────── */
+/* ── Glassmorphism & 3D Utilities ────────────────────────── */
 
 /* Dark glass — for use on navy/blue hero backgrounds */
 .glass-dark {
@@ -33,6 +33,44 @@ body {
   backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--glass-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+/* Shiny Glass — with diagonal reflection */
+.glass-shiny {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-shiny::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+  animation: shine 6s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  20%, 100% { transform: translateX(100%) translateY(100%); }
+}
+
+/* 3D Depth — Deep layered shadow */
+.depth-3d {
+  box-shadow: 
+    0 1px 1px rgba(0,0,0,0.11), 
+    0 2px 2px rgba(0,0,0,0.11), 
+    0 4px 4px rgba(0,0,0,0.11), 
+    0 8px 8px rgba(0,0,0,0.11), 
+    0 16px 16px rgba(0,0,0,0.11), 
+    0 32px 32px rgba(0,0,0,0.11);
 }
 
 /* Light glass — for use on off-white/light sections */
@@ -51,28 +89,51 @@ body {
   backdrop-filter: blur(16px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255,255,255,0.12);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
 }
 
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.14);
   border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(245,158,11,0.2), inset 0 1px 0 rgba(255,255,255,0.15);
-  transform: translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.2);
+  transform: translateY(-8px) scale(1.02) rotateX(2deg);
 }
 
-/* ── Buttons ────────────────────────────────────────────── */
+/* ── Buttons (Tactile 3D) ────────────────────────────────── */
 .btn-primary {
   @apply bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition-colors shadow-lg cursor-pointer;
+  box-shadow: 0 4px 0 theme('colors.blue.900'), 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 theme('colors.blue.900'), 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .btn-accent {
-  @apply bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-3 px-6 rounded-lg transition-all hover:scale-105 cursor-pointer;
-  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4), 0 0 0 0 rgba(245,158,11,0.5);
+  @apply bg-linear-to-b from-amber-400 to-amber-600 text-slate-900 font-extrabold py-4 px-8 rounded-2xl transition-all hover:scale-105 cursor-pointer border-t border-white/30;
+  box-shadow: 0 6px 0 #b45309, 0 12px 25px rgba(245, 158, 11, 0.3);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
 }
 
 .btn-accent:hover {
-  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.6);
+  @apply from-amber-300 to-amber-500 shadow-amber-500/40;
+  box-shadow: 0 8px 0 #b45309, 0 15px 30px rgba(245, 158, 11, 0.5);
+}
+
+.btn-accent:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #b45309, 0 5px 10px rgba(245, 158, 11, 0.2);
+}
+
+/* ── Glows ────────────────────────────────────────────── */
+.glow-amber {
+  filter: drop-shadow(0 0 15px rgba(245, 158, 11, 0.5));
+}
+
+.glow-blue {
+  filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5));
 }
 
 /* ── Animations ─────────────────────────────────────────── */

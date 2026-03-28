@@ -15,11 +15,11 @@ export default function Home() {
       />
       
       {/* Services Section */}
-      <section className="py-24 relative overflow-hidden bg-gradient-to-b from-[#0f1e4a] to-[#1a2e6e]">
-        {/* Background orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 orb-blue opacity-30 blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 orb-amber opacity-20 blur-3xl pointer-events-none"></div>
-        <div className="bg-pattern-dots absolute inset-0 pointer-events-none"></div>
+      <section className="py-24 relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_#1a2e6e_0%,_#0f1e4a_100%)]">
+        {/* Animated Orbs for Depth */}
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] orb-blue opacity-20 blur-[120px] animate-pulse-slow pointer-events-none"></div>
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] orb-amber opacity-10 blur-[120px] animate-pulse-slow pointer-events-none"></div>
+        <div className="bg-pattern-dots-dark absolute inset-0 opacity-30 pointer-events-none"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -48,16 +48,19 @@ export default function Home() {
             return (
               <div className="grid md:grid-cols-3 gap-8">
                 {config.services.slice(0, 3).map((service, index) => (
-                  <div key={index} className="glass-card rounded-2xl group overflow-hidden">
-                    <div className="relative h-48 overflow-hidden">
+                  <div key={index} className="glass-card rounded-3xl group overflow-hidden border border-white/10 hover:border-amber-500/50 transition-all duration-500">
+                    <div className="relative h-56 overflow-hidden">
                       <Image
                         src={serviceData[index].image}
                         alt={serviceData[index].alt}
                         fill
                         unoptimized
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="object-cover group-hover:scale-110 transition-transform duration-1000"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-blue-950/60 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-blue-950/20 to-transparent"></div>
+                      <div className="absolute top-4 right-4 glass-shiny p-2 rounded-xl border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
+                         <span className="text-amber-400 text-xs font-bold tracking-tighter">PREMIUM</span>
+                      </div>
                     </div>
                     <div className="p-8">
                       <h3 className="text-xl font-bold text-white mb-3">{service}</h3>
@@ -74,10 +77,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Block */}
-      <section className="py-20 relative overflow-hidden bg-gradient-to-b from-[#1a2e6e] to-[#0f1e4a]">
+      {/* Trust Block with Depth */}
+      <section className="py-24 relative overflow-hidden bg-[#0f1e4a]">
         <div className="container mx-auto px-4">
-           <div className="flex flex-col md:flex-row items-center gap-12 bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+           <div className="flex flex-col md:flex-row items-center gap-12 glass-shiny rounded-[40px] overflow-hidden depth-3d border border-white/10 group">
              <div className="md:w-1/2 p-12 md:p-16 text-white">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Why Choose {config.name}?</h2>
                 <ul className="space-y-4 mb-8">
@@ -115,9 +118,9 @@ export default function Home() {
       </section>
       
       {/* Quote Form Section */}
-      <section id="quote" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#0f1e4a] to-[#1a2e6e]">
-         <div className="absolute top-0 right-0 w-96 h-96 orb-amber opacity-20 blur-3xl pointer-events-none"></div>
-         <div className="absolute bottom-0 left-0 w-96 h-96 orb-blue opacity-30 blur-3xl pointer-events-none"></div>
+      <section id="quote" className="py-24 relative overflow-hidden bg-[radial-gradient(circle_at_bottom,_#1a2e6e_0%,_#050b1d_100%)]">
+         <div className="absolute top-0 right-0 w-[600px] h-[600px] orb-amber opacity-10 blur-[150px] pointer-events-none"></div>
+         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] orb-blue opacity-15 blur-[150px] pointer-events-none"></div>
          <div className="bg-pattern-dots absolute inset-0 pointer-events-none"></div>
          
          <div className="container relative z-10 mx-auto px-4 max-w-4xl pt-8">
