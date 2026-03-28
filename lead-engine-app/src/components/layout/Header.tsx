@@ -9,7 +9,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 glass-panel">
       <div className="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
         <Link href="/" prefetch={false} className="flex items-center gap-3 group">
-          <div className="relative w-48 h-12 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+          <div className="relative w-64 h-16 md:w-[480px] md:h-[120px] transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_25px_rgba(59,130,246,0.7)]">
             <Image
               src="/logo_neon.png"
               alt={config.name}

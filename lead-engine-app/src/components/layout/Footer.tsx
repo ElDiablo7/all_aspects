@@ -12,8 +12,8 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 grid md:grid-cols-4 gap-12 relative z-10">
         <div className="space-y-4">
-          <div className="flex items-center gap-3 mb-6 group">
-            <div className="relative w-40 h-10 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+          <div className="flex items-center gap-3 mb-10 group">
+            <div className="relative w-64 h-16 md:w-[480px] md:h-[120px] transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               <Image
                 src="/logo_neon.png"
                 alt={config.name}
