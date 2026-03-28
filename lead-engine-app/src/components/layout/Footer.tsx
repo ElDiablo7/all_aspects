@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getSiteConfig } from '@/lib/site-config';
 
 export default function Footer() {
@@ -11,11 +12,16 @@ export default function Footer() {
 
       <div className="container mx-auto px-4 grid md:grid-cols-4 gap-12 relative z-10">
         <div className="space-y-4">
-          <div className="flex items-center gap-3 mb-6">
-            <div className={`w-10 h-10 rounded-xl shadow-lg flex items-center justify-center text-white font-bold text-xl ${config.primaryColor}`}>
-               {config.name.charAt(0)}
+          <div className="flex items-center gap-3 mb-6 group">
+            <div className="relative w-40 h-10 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+              <Image
+                src="/logo_neon.png"
+                alt={config.name}
+                fill
+                className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                unoptimized
+              />
             </div>
-            <h3 className="text-xl font-bold text-white tracking-tight">{config.name}</h3>
           </div>
           <p className="text-sm leading-relaxed">
             Premium {config.services[0].toLowerCase()} and {config.services[1].toLowerCase()} solutions. Built on trust, delivered with excellence across Surrey and South London.

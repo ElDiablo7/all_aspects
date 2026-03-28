@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getSiteConfig } from '@/lib/site-config';
 
 export default function Header() {
@@ -7,14 +8,16 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 glass-panel">
       <div className="container mx-auto px-4 py-3 flex flex-wrap justify-between items-center">
-        <Link href="/" prefetch={false} className="flex items-center gap-3">
-          <div className={`w-10 h-10 rounded-xl shadow-lg flex items-center justify-center text-white font-bold text-xl ${config.primaryColor}`}
-               style={{boxShadow: '0 4px 15px rgba(30,64,175,0.4)'}}>
-             {config.name.charAt(0)}
+        <Link href="/" prefetch={false} className="flex items-center gap-3 group">
+          <div className="relative w-48 h-12 transition-all duration-500 group-hover:scale-105 group-hover:drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+            <Image
+              src="/logo_neon.png"
+              alt={config.name}
+              fill
+              className="object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+              unoptimized
+            />
           </div>
-          <span className={`text-xl font-bold tracking-tight ${config.textColor}`}>
-            {config.name}
-          </span>
         </Link>
         <nav className="hidden md:flex gap-6 font-semibold text-slate-700">
           <Link href={`/${config.services[0].toLowerCase().replace(' ', '-')}`} className="hover:text-amber-600 transition-colors">{config.services[0]}</Link>
