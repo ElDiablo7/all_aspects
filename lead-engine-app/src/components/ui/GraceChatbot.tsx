@@ -163,134 +163,111 @@ export default function GraceChatbot() {
 
   return (
     <>
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-16 h-16 rounded-full glass-dark text-amber-400 text-3xl shadow-[0_0_30px_rgba(245,158,11,0.3)] flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 border border-white/20 cursor-pointer overflow-hidden group"
-        aria-label="Toggle Chatbot"
-      >
-        <div className="absolute inset-0 bg-amber-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        {isOpen ? '×' : '💬'}
-      </button>
+      {/* Chat Trigger Bubble */}
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="fixed bottom-6 right-6 w-16 h-16 rounded-2xl glass-shiny depth-3d flex items-center justify-center transition-all duration-500 z-50 group border border-white/20 hover:scale-110 active:scale-95 animate-pulse-slow"
+          aria-label="Open Chat"
+        >
+          <div className="absolute inset-0 bg-amber-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <span className="text-3xl group-hover:scale-110 transition-transform">✨</span>
+        </button>
+      )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[320px] md:w-[400px] glass-dark rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] overflow-hidden z-50 border border-white/10 flex flex-col h-[550px] animate-in slide-in-from-bottom-8 duration-500 ease-out">
+        <div className="fixed bottom-6 right-6 w-[92vw] md:w-[400px] h-[600px] max-h-[85vh] glass-shiny depth-3d rounded-[32px] flex flex-col transition-all duration-500 z-50 border border-white/20 origin-bottom-right animate-in slide-in-from-bottom-8 scale-in-95">
+          
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-950/80 to-blue-900/80 backdrop-blur-md text-white p-5 flex justify-between items-center border-b border-white/5">
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500 text-slate-900 flex items-center justify-center font-bold text-2xl shadow-lg animate-float">
-                  G
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-blue-950 rounded-full animate-pulse"></div>
+          <div className="p-6 border-b border-white/10 flex items-center justify-between bg-white/5">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl glass-shiny border border-white/10 flex items-center justify-center shadow-lg group">
+                <span className="text-2xl group-hover:rotate-12 transition-transform">👩‍💼</span>
               </div>
               <div>
-                <h3 className="font-bold text-lg tracking-tight">GRACE-X</h3>
+                <h3 className="text-white font-bold leading-none mb-1">Grace</h3>
                 <div className="flex items-center gap-1.5">
-                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                   <p className="text-[10px] uppercase font-bold text-blue-200/80 tracking-widest">Sales Assistant Online</p>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[10px] text-blue-200/50 uppercase font-black tracking-widest">AI Assistant</span>
                 </div>
               </div>
             </div>
-          </div>
-          
-          {/* Messages Area */}
-          <div ref={scrollRef} className="flex-grow p-4 overflow-y-auto space-y-4 bg-blue-950/20 backdrop-blur-xl custom-scrollbar">
-             {messages.map((m, i) => (
-                <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
-                  <div className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
-                    m.role === 'user' 
-                      ? 'bg-amber-500 text-slate-950 rounded-tr-none shadow-lg' 
-                      : 'bg-white/10 text-white border border-white/10 rounded-tl-none backdrop-blur-md shadow-inner'
-                  }`}>
-                    {m.text}
-                  </div>
-                </div>
-             ))}
-              {isTyping && (
-                <div className="flex justify-start animate-in fade-in duration-300">
-                  <div className="bg-white/10 text-white border border-white/10 rounded-2xl rounded-tl-none px-4 py-3 backdrop-blur-md shadow-inner">
-                    <div className="flex gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce [animation-delay:0ms]"></span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce [animation-delay:150ms]"></span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-200/40 animate-bounce [animation-delay:300ms]"></span>
-                    </div>
-                  </div>
-                </div>
-              )}
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center text-white/40 hover:text-white transition-all"
+            >
+              ✕
+            </button>
           </div>
 
-          {/* Quick Prompts */}
-          <div className="px-4 py-2 bg-blue-950/30 flex gap-2 overflow-x-auto no-scrollbar border-t border-white/5">
-            {[
-              "What area do you cover?",
-              "How do I get a quote?",
-              "What services do you offer?",
-              "Are you available now?"
-            ].map((p, i) => (
-              <button 
-                key={i} 
-                onClick={() => { setInput(p); setTimeout(handleSend, 100); }}
-                className="flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-white/10 border border-white/10 text-[10px] text-blue-100 hover:bg-white/20 hover:text-white transition-all cursor-pointer shadow-sm"
-              >
-                {p}
-              </button>
+          {/* Message Area */}
+          <div 
+            ref={scrollRef}
+            className="flex-1 overflow-y-auto p-6 space-y-6 no-scrollbar scrolling-touch custom-scrollbar"
+          >
+            {messages.map((m, i) => (
+              <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'} animate-in slide-in-from-bottom-2 duration-300`}>
+                <div className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-lg border ${
+                  m.role === 'user' 
+                    ? 'bg-amber-500 text-slate-900 font-bold rounded-tr-none border-amber-400' 
+                    : 'glass-dark text-blue-50 border-white/10 rounded-tl-none'
+                }`}>
+                  {m.role === 'agent' && <p className="mb-2 font-black text-[10px] uppercase tracking-tighter text-amber-500/50 italic">Grace Says:</p>}
+                  {m.text}
+                </div>
+              </div>
             ))}
-            <button 
-              onClick={handleSendInquiry}
-              className="flex-shrink-0 whitespace-nowrap px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30 text-[10px] text-amber-400 font-bold hover:bg-amber-500/40 transition-all cursor-pointer shadow-lg"
-            >
-              📧 Send to Team
-            </button>
+            {isTyping && (
+              <div className="flex justify-start animate-pulse">
+                <div className="glass-dark p-4 rounded-2xl rounded-tl-none border border-white/10">
+                  <div className="flex gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce"></span>
+                    <span className="w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce delay-75"></span>
+                    <span className="w-1.5 h-1.5 bg-blue-300 rounded-full animate-bounce delay-150"></span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Input Footer */}
-          <div className="p-4 bg-blue-950/40 backdrop-blur-2xl border-t border-white/5 flex gap-2 pb-6">
-            <button 
-              onClick={toggleListening}
-              className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all shadow-lg ${
-                isListening 
-                  ? 'bg-red-500 text-white animate-pulse' 
-                  : 'bg-white/5 text-blue-200 hover:bg-white/10'
-              } border border-white/10 cursor-pointer`}
-              title="Speak to Grace"
-            >
-              {isListening ? '⏺' : '🎤'}
-            </button>
-            <input 
-              type="text" 
-              value={input}
-              onChange={e => setInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleSend()}
-              placeholder={isListening ? "Listening..." : "Tell me about your job..."}
-              className="flex-grow px-5 py-3 bg-white/10 border border-white/20 rounded-2xl focus:ring-2 focus:ring-amber-500/50 outline-none text-base text-white placeholder:text-blue-100/70 transition-all font-medium"
-            />
-            <button 
-              onClick={handleSend} 
-              aria-label="Send Message" 
-              className="w-12 h-12 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center cursor-pointer shadow-lg hover:bg-amber-400 active:scale-90 transition-all text-xl"
-            >
-              ➤
-            </button>
+          {/* Input Area */}
+          <div className="p-6 bg-white/5 border-t border-white/10">
+            <div className="relative group">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                placeholder={isListening ? "Listening..." : "Tell me about your project..."}
+                className="w-full bg-white/5 border border-white/10 text-white pl-5 pr-12 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner placeholder:text-blue-100/30 transition-all group-hover:bg-white/10"
+              />
+              <button 
+                onClick={handleSend}
+                disabled={!input.trim() || isTyping}
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg disabled:opacity-50 disabled:grayscale"
+              >
+                🚀
+              </button>
+            </div>
+            <div className="flex items-center justify-between mt-4 px-1">
+               <button 
+                 onClick={toggleListening}
+                 className={`text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-all ${isListening ? 'text-red-400' : 'text-blue-200/40 hover:text-amber-500'}`}
+               >
+                  <span className={`w-2 h-2 rounded-full ${isListening ? 'bg-red-500 animate-ping' : 'bg-blue-200/20'}`}></span>
+                  {isListening ? 'Stop Mic' : 'Voice Search'}
+               </button>
+               <button 
+                 onClick={handleSendInquiry}
+                 className="text-[10px] font-black uppercase tracking-widest text-amber-500/50 hover:text-amber-500 transition-colors"
+               >
+                  Send Inquiry ⚡
+               </button>
+            </div>
           </div>
         </div>
       )}
-
-      <style jsx global>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.2);
-        }
-      `}</style>
     </>
   );
 }
