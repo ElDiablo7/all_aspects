@@ -20,7 +20,7 @@ export const getSiteConfig = () => {
     phone: '0800 959 6695',
     primaryColor: 'bg-blue-800',
     textColor: 'text-blue-800',
-    services: ['Driveways', 'Patios', 'Block Paving', 'Resin', 'Landscaping'],
+    services: ['Driveways', 'Patios', 'Block Paving', 'Resin', 'Landscaping', 'Garden Paths', 'Fencing', 'Brick Walls'],
     email: 'info@allaspectspaving.co.uk'
   };
 };

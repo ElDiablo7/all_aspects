@@ -56,7 +56,10 @@ export async function submitLead(prevState: ActionState | null, formData: FormDa
   const data = validatedFields.data;
 
   // 2. Routing Logic
-  const pavingServices = ['driveway', 'driveways', 'block paving', 'resin', 'resin driveway', 'patio', 'patios', 'paving', 'landscaping'];
+  const pavingServices = [
+    'driveway', 'driveways', 'block paving', 'resin', 'resin driveway', 
+    'patio', 'patios', 'paving', 'landscaping', 'garden paths', 'fencing', 'brick walls'
+  ];
   const bucket = pavingServices.includes(data.serviceType.toLowerCase()) ? 'PAVING' : 'BUILDING';
 
   // 3. Scoring Logic

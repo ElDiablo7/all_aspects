@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <Hero 
         title={`Premium ${config.services[0]} & ${config.services[1]} Solutions`}
-        subtitle={`Transform your property with ${config.name}'s expert team. Trusted by hundreds of homeowners for quality and reliability.`}
+        subtitle={`20+ Years Excellence in ${config.services[0]}. Trusted by hundreds across Surrey & London for quality workmanship and bespoke designs.`}
         themeColor={config.domain.includes('paving') ? 'bg-blue-900' : 'bg-slate-900'}
       />
       
@@ -83,19 +83,19 @@ export default function Home() {
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-center gap-3">
                     <span className="bg-amber-500 text-slate-900 rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">✓</span>
-                    No-Obligation Free Quotes
+                    10-Year Guarantee on All Workmanship
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="bg-amber-500 text-slate-900 rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">✓</span>
-                    Fully Insured & Guaranteed Work
+                    Checkatrade Member with 9.6/10 Average Score
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="bg-amber-500 text-slate-900 rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">✓</span>
-                    Transparent Pricing, No Hidden Fees
+                    Fully Insured & Family Run Since 2004
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="bg-amber-500 text-slate-900 rounded-full w-6 h-6 flex items-center justify-center font-bold text-xs">✓</span>
-                    20+ Years Experience & Checkatrade 9.6/10 Rating
+                    No-Obligation Free Written Quotations
                   </li>
                 </ul>
                 <a href="#quote" className="btn-accent inline-block">Request a Site Survey</a>
@@ -129,6 +129,21 @@ export default function Home() {
                <QuoteForm />
             </div>
          </div>
+      </section>
+
+      {/* Areas We Cover */}
+      <section className="py-20 bg-[#0a1535] border-t border-white/5">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="text-center md:text-left">
+              <h3 className="text-white font-bold text-xl mb-2">Areas We Cover</h3>
+              <p className="text-blue-200/60 text-sm max-w-md">Proudly serving Surrey, London, and West Sussex — including Wallington, Croydon, Sutton, Epsom, and surrounding boroughs.</p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 text-amber-500/80 font-bold text-xs tracking-widest uppercase">
+               <span>Surrey</span> • <span>London</span> • <span>West Sussex</span>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

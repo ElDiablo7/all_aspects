@@ -136,8 +136,8 @@ export default async function ServicePage({ params }: Props) {
            <h2 className="text-3xl font-bold text-slate-800 mb-6">Expert {title}</h2>
            <p className="text-lg text-slate-600 mb-6">
              When you&apos;re looking for reliable <strong>{title.toLowerCase()}</strong>, quality and trust are everything. 
-             At {config.name}, we pride ourselves on delivering outstanding results on every single project. 
-             Whether you need a full installation or minor repairs, our team has the experience to get it done right, on time, and within budget.
+             At {config.name}, we pride ourselves on delivering outstanding results on every project using premium materials. 
+             Whether it&apos;s <strong>Indian Stone, Porcelain, Tarmac, or Resin</strong>, our team has the 20+ years of experience to get it done right, on time, and with a full <strong>10-year workmanship guarantee</strong>.
            </p>
            
            <h3 className="text-2xl font-bold text-slate-800 mt-10 mb-4">Our Process</h3>
