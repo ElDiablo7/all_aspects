@@ -18,6 +18,10 @@ export default function GraceChatbot() {
   const config = getSiteConfig();
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const quickPrompts = config.domain.includes('paving') 
+    ? ["💰 Driveway Price?", "🏠 Patio Designs?", "📅 Book a Quote", "📍 Areas Covered?"]
+    : ["🏗️ Extension Cost?", "🏠 Loft Conversion?", "📅 Book a Quote", "📍 Areas Covered?"];
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -118,6 +122,15 @@ export default function GraceChatbot() {
 
     recognitionRef.current.start();
     setIsListening(true);
+  };
+
+  const handlePromptClick = (prompt: string) => {
+    setInput(prompt);
+    // Small delay to ensure input is set before send
+    setTimeout(() => {
+      const btn = document.getElementById('chat-send-btn');
+      btn?.click();
+    }, 50);
   };
 
   const speak = (text: string) => {
@@ -233,6 +246,19 @@ export default function GraceChatbot() {
             )}
           </div>
 
+          {/* Quick Prompts - Fixed visibility */}
+          <div className="px-6 pb-2 flex flex-wrap gap-2">
+            {messages.length <= 1 && quickPrompts.map((prompt) => (
+              <button
+                key={prompt}
+                onClick={() => handlePromptClick(prompt)}
+                className="px-4 py-2 rounded-full glass-shiny border border-white/10 text-[10px] uppercase font-black tracking-wider text-blue-100 hover:bg-amber-500 hover:text-slate-900 transition-all shadow-sm active:scale-95"
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+
           {/* Input Area */}
           <div className="p-6 bg-white/5 border-t border-white/10">
             <div className="relative group">
@@ -245,6 +271,7 @@ export default function GraceChatbot() {
                 className="w-full bg-white/5 border border-white/10 text-white pl-5 pr-12 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-amber-500/50 shadow-inner placeholder:text-blue-100/30 transition-all group-hover:bg-white/10"
               />
               <button 
+                id="chat-send-btn"
                 onClick={handleSend}
                 disabled={!input.trim() || isTyping}
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg disabled:opacity-50 disabled:grayscale"

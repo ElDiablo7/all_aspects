@@ -200,21 +200,25 @@ body {
   bottom: 1.5rem !important;
   right: 1.5rem !important;
   left: auto !important;
-  z-index: 10000 !important;
+  z-index: 10001 !important;
+  box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2) !important;
 }
 
 .fixed-assistant-window {
   position: fixed !important;
-  bottom: 1.5rem !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 10000 !important;
+  bottom: 1rem !important;
+  right: 1rem !important;
+  left: 1rem !important;
+  z-index: 10001 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
 }
 
 @media (min-width: 768px) {
   .fixed-assistant-window {
     left: auto !important;
     right: 1.5rem !important;
+    bottom: 1.5rem !important;
+    width: 400px !important;
     transform: none !important;
   }
 }
